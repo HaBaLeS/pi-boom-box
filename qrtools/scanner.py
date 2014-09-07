@@ -8,11 +8,6 @@ class ImageScanner:
 		# configure the reader
 		self.scanner.parse_config('enable')
 
-	
-
-		
-			
-		
 		
 	def scanImage(self,file):
 		# obtain image data
@@ -26,11 +21,16 @@ class ImageScanner:
 		# scan the image for barcodes
 		self.scanner.scan(image)
 		
+		
+		
+		
 		# extract results
 		for symbol in image:
 			# do something useful with results
 			print 'decoded', symbol.type, 'symbol', '"%s"' % symbol.data
-
-		# clean up
-		del(image)
-	
+			if symbol:
+				# clean up
+				del(image)
+				return symbol.data
+			
+		
